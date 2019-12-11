@@ -5,6 +5,8 @@
 #include <math.h>
 #include <vector>
 #include <numeric>
+#include <time.h>
+#include <iomanip>
 using namespace std;
 int factorial(int n)
 {
@@ -29,6 +31,8 @@ void Norm(vector<double>& v)
 	for (i = 1; i < v.size(); i++) if (v[i] > max) max = v[i];
 	for (i = 0; i < v.size(); i++) v[i] = v[i] / max;
 }
+void buble_sort(double* arr, int size);
+void print_array(double* arr, int size);
 int main()
 {
 	setlocale(LC_ALL, "RUS");
@@ -45,7 +49,7 @@ int main()
 
 // #TASK 3
 	setlocale(LC_ALL, "Ru");
-/*	double x, y;
+	/*double x, y;
 	int x1 = 0, // угол №1 прямоугольника
 			y1 = 0, // угол №1 прямоугольника
 				x2 = -1,// угол №2 прямоугольника
@@ -105,9 +109,10 @@ cout << res << endl;*/
 
 //#TASK 2
 	//sinh(x); x, e; ряд тейлора.
-	/*int k = 3, j = 1;
+	/*double k = 3, j = 1;
 	double s = 0, x, e, i;
 	cout << "введите x и  e\n";
+	cout << sinh(0.5);
 	cin >> x >> e;
 	do
 	{
@@ -124,70 +129,42 @@ cout << res << endl;*/
 
 
 //task 3
-
-	/*const int N = 5;
-	double arr[N];
-	for (int i = 0; i < N; i++) cin >> arr[i];
-	// заполнить массив 
-	bool upp = true, down = true, StrictUpp = true, StrictDown = true;
-	for (int i = 1; i < N; i++)
-	{
-		if (arr[i - 1] < arr[i])
-		{
-			upp = false;
-			StrictDown = false;
-		}
-		if (arr[i - 1] == arr[i])
-		{
-			StrictUpp = false;
-			StrictDown = false;
-		}
-		if (arr[i - 1] > arr[i])
-		{
-			upp = false;
-			StrictUpp = false;
-		}
-	}
-	if (StrictUpp)cout<<"Строго Возрастающая";
-	else if (upp)cout<<"Невозрастающая";
-	else cout<<"Возрастающая";
-	if (StrictDown)cout<<"Строго Убывающая";
-	else if (down) cout<<"Неубывающая";
-	else cout<<"Убывающая"; */
 /*const int n = 5;
 int a[n];
 for (int i = 0; i < n; i++) cin >> a[i];
-bool less = true, nobig = true, big = true, noless = true;
+bool less = true, nobig = true, big = true, noless = true, nolessbig = true, bigless = true;
 for (int i = 1; i < n; i++)
 {
 	if (less && a[i] >= a[i - 1]) less = false;
 	if (nobig && a[i] > a[i - 1]) nobig = false;
 	if (big && a[i] <= a[i - 1]) big = false;
 	if (noless && a[i] < a[i - 1]) noless = false;
-	if (!less && !nobig && !big && !noless) { cout << "бип буп буп бип" << endl; break; }
+	if (nolessbig && a[i-1] > a[i])nolessbig = false;
+	if (bigless && a[i-1] < a[i])bigless = false;
+	if (!less && !nobig && !big && !noless) { cout << "Никакая" << endl; break; }
 }
 if (less) cout << "Убывающая" << endl;
 if (nobig) cout << "Невозрастающая" << endl;
 if (big) cout << "Возрастающая" << endl;
-if (noless) cout << "Неубывающая" << endl;*/
+if (noless) cout << "Неубывающая" << endl;
+if (nolessbig) cout << "Строго возрастающая" << endl;
+if (bigless) cout << "Строго убывающая" << endl;*/
+
 
 //task 11
-/*int i;
-vector<double> v(5);
+/*int i,n;
+cin >> n;
+vector<double> v(n);
+for(int j = 0; j < n; j++)
+	cin >> v[j];
 
-v[0] = 1;
-v[1] = 5;
-v[2] = 2;
-v[3] = 4;
-v[4] = 3;
-
-cout << "Source vector: " << endl;
+cout << "Исходный вектор: " << endl;
 for (i = 0; i < v.size(); i++) cout << v[i] << " ";
 cout << endl;
 
 Norm(v);
 
-cout << "Vector after norm: " << endl;
+cout << "Вектор после нормирования: " << endl;
 for (i = 0; i < v.size(); i++) cout << v[i] << " ";
 cout << endl;*/
 //task 19
@@ -203,15 +180,128 @@ for (unsigned int i = 0; i < n; i++) { //  i - номер первого не о
 	for (unsigned int j = i + 1; j < n; j++) { // ищем минимальный элемент в остатке массива
 		if (arr[j] < arr[min]) {
 			min = j;
+			cout << arr[i] << " ";
 		}
+		//cout << endl;
 	}
-
 	if (min != i) { // если минимальный элемент не на своем месте - переносим его
 		int temp_value = arr[i];
+		cout << arr[i] << " " << endl;
 		arr[i] = arr[min];
 		arr[min] = temp_value;
+		cout << arr[i] << " ";
 	}
 }
 for (unsigned int i = 0; i < n; i++) cout << arr[i] << " ";*/
+int n; cin >> n;
+double* a = new double[n];
+for (int i = 0; i < n; i++) cin >> a[i];
+buble_sort(a, n);
+delete[] a;
+//LAB 6
+//task 3
+
+/*int n;
+cin >> n;
+n + 1;
+for (int k = 0; k < n; k++)
+{
+	for (int j = 0; j < n; j++)
+	{
+		if (n != 1)
+		{
+			cout << n - 1 << endl;
+		}
+		
+	}
+}*/
+
+//task 14
+/*Среди столбцов целочисленной матрицы
+A( n x m)
+, содержащих
+только положительные элементы, найти столбец с минимальным
+произведением элементов.
+*/
+/*int n, m, i, j, s, first, nom;
+int mass[20][20];
+
+cout << "Введите количество столбцов: ";
+cin >> n;
+
+cout << "Введите количество строк: ";
+cin >> m;
+cout << "Введите матрицу, пример:\n\
+1 1 1\n\
+1 1 1\n\
+1 1 1" << endl;
+for (i = 0; i < m; i++)
+{
+	for (j = 0; j < n; j++)
+	{
+		cin >> mass[i][j];
+	}
+}
+
+
+for (i = 0; i < m; i++)
+{
+	for (j = 0; j < n; j++)
+	{
+		cout << mass[i][j] << " ";
+	}
+	cout << endl;
+}
+
+s = 1;
+first = 1;
+nom = 0;
+
+for (i = 0; i < m; i++)  // принимаем произведение первого столбца за минимум
+	first *= mass[i][0];
+
+
+for (i = 1; i < n; i++)
+{
+	for (j = 0; j < m; j++)
+	{
+		s = s * abs(mass[j][i]);
+
+	}
+	if (s < first)
+	{
+		nom = i;
+		first = s;
+	}
+	s = 1;
+}
+cout << "Номер столбца с минимальным произведением элементов: " << nom + 1;*/
+
 	return 0;
+}
+void buble_sort(double* arr, int size)
+{
+	double temp;
+	for (int i = 0; i < size - 1; ++i)
+	{
+		for (int j = 0; j < size - 1; ++j)
+		{
+			cout << arr[j] << " ";
+			if (arr[j + 1] < arr[j])
+			{
+				temp = arr[j + 1];
+				arr[j + 1] = arr[j];
+				arr[j] = temp;
+				cout << arr[j] << " ";
+			}
+			cout << arr[j] << " ";
+		}
+		cout << arr[i] << " " << endl;
+	}
+	print_array(arr, size);
+}
+void print_array(double* arr, int size)
+{
+	for (int i = 0; i < size; i++)
+		cout << arr[i] << " ";
 }
